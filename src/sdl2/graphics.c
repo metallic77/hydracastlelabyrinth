@@ -97,13 +97,13 @@ void PHL_GraphicsInit()
 		SDL_GetRendererOutputSize(renderer, &screenW, &screenH);
 
 		actualH = screenH;
-		actualW = screenH * ratio;
+		actualW = screenW * 1.3333;
 
 		deltaX = (screenW-actualW)/2;
 		deltaY = 0;
 
-	        screen = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA32, SDL_TEXTUREACCESS_TARGET, 320, 240);
-	        backbuffer = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA32, SDL_TEXTUREACCESS_TARGET, 320, 240);
+	        screen = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, 320, 240);
+	        backbuffer = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, 320, 240);
 	}
 	else {
 		// Scale in software so XBRZ scaling can be done.
@@ -121,8 +121,8 @@ void PHL_GraphicsInit()
 		actualW = 320*screenScale;
 		actualH = 240*screenScale;
 
-		screen = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA32, SDL_TEXTUREACCESS_TARGET, actualW, actualH);
-		backbuffer = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA32, SDL_TEXTUREACCESS_TARGET, actualW, actualH);
+		screen = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, actualW, actualH);
+		backbuffer = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, actualW, actualH);
 	}
 
 	drawbuffer = screen;
@@ -162,9 +162,10 @@ void PHL_EndDrawing()
 	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
+	SDL_RenderSetScale(renderer, 0.75, 1.0);
 
-	SDL_Rect rect = {deltaX, deltaY, actualW, actualH};
-	SDL_RenderCopy(renderer, screen, NULL, &rect);
+	SDL_Rect rect = {0, deltaY, actualW, actualH};
+	SDL_RenderCopyEx(renderer, screen, NULL, &rect, 270, NULL, SDL_FLIP_NONE);
 
 	SDL_RenderPresent(renderer);
 	SDL_SetRenderTarget(renderer, drawbuffer);
