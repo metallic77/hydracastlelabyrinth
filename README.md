@@ -1,4 +1,4 @@
-# Hydra Castle Labyrinth
+# Hydra Castle Labyrinth Port for Miyoo A30 (rotated/scaled)
 
 ![HCL build status](https://api.travis-ci.org/ptitSeb/hydracastlelabyrinth.png "HCL build status")
 
