@@ -69,35 +69,17 @@ void Input_KeyEvent(SDL_Event* evt)
         case SDLK_DOWN:     bDown = w; break;
         case SDLK_LEFT:     bLeft = w; break;
         case SDLK_RIGHT:    bRight = w; break;
-#if defined(PANDORA) || defined(PYRA)
-        case SDLK_PAGEUP:   bFaceUp = w; break;
-        case SDLK_PAGEDOWN: bFaceDown = w; break;
-        case SDLK_END:      bFaceLeft = w; break;   // reversing, so (B) is sword
-        case SDLK_HOME:     bFaceRight = w; break;
-        case SDLK_RCTRL:    bR = w; break;
-        case SDLK_RSHIFT:   bL = w; break;
-        case SDLK_LCTRL:    bSelect = w; break;
-		case SDLK_LALT:     bStart = w; break;
-#elif defined(CHIP)
-		case SDLK_MINUS:        bFaceUp = w; break;
-		case SDLK_o:            bFaceDown = w; break;
-		case SDLK_0:            bFaceLeft = w; break;
-		case SDLK_EQUALS:       bFaceRight = w; break;
-		case SDLK_1:            bR = w; break;
-		case SDLK_2:            bL = w; break;
-		case SDLK_SPACE:        bSelect = w; break;
-		case SDLK_RETURN:       bStart = w; break;
-#else
-        case SDLK_e:        bFaceUp = w; break;
-        case SDLK_x:        bFaceDown = w; break;
-        case SDLK_s:        bFaceLeft = w; break;
+
+        case SDLK_LSHIFT:        bFaceUp = w; break;
+        case SDLK_LCTRL:        bFaceDown = w; break;
+        case SDLK_LALT:        bFaceLeft = w; break;
         case SDLK_d:        bFaceRight = w; break;
         case SDLK_r:        bR = w; break;
         case SDLK_w:        bL = w; break;
-		case SDLK_SPACE:    bSelect = w; break;
+		case SDLK_SPACE:    bFaceRight = w; break;
 		case SDLK_ESCAPE:   bSelect = w; break;
         case SDLK_RETURN:   bStart = w; break;
-#endif
+
     }
 }
 
