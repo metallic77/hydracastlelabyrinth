@@ -33,7 +33,7 @@ int drawscreen = 0;
 
 int xbrz = 0;
 
-static const int FPS = 70;
+static const int FPS = 60;
 
 static uint32_t tframe;
 
@@ -151,7 +151,7 @@ void PHL_EndDrawing()
 	//implement some crude frameskiping, limited to 2 frame skip
 	static int skip = 0;
 	uint32_t tnext = tframe + 1000/FPS;
-	if (SDL_GetTicks()>tnext && skip<2) {
+	if (SDL_GetTicks()>tnext && skip<1) {
 		tframe += 1000/FPS;
 		skip++;
 		return;
